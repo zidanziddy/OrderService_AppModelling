@@ -8,12 +8,14 @@ import java.util.List;
 @Entity
 @Table(name = "Orders")
 public class Order {
+
+	@Column(nullable = false)
+	private BigDecimal totalPrice;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private BigDecimal totalPrice;
+
 
     
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -46,11 +48,11 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-	
+
 	public void addOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
-    }
+		orderItems.add(orderItem);
+		orderItem.setOrder(this);
+	}
     
 }
 

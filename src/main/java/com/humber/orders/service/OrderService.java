@@ -20,7 +20,15 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
 
-    
+    public Order placeOrder(Order order) {
+        Order savedOrder = orderRepository.save(order);
+        Map<Long, Integer> productMap = convertOrderItemsToMap(order.getOrderItems());
+        OrderPlacedEvent event = new OrderPlacedEvent(savedOrder.getId().toString(), productMap);
+
+        // Send event
+        kafkaProducerService.sendOrderPlacedEvent(event);
+        return savedOrder;
+    }
     private Map<Long, Integer> convertOrderItemsToMap(List<OrderItem> orderItems) {
         Map<Long, Integer> productMap = new HashMap<>();
         for (OrderItem item : orderItems) {
@@ -34,15 +42,7 @@ public class OrderService {
         this.kafkaProducerService = kafkaProducerService;
     }
 
-    public Order placeOrder(Order order) {
-        Order savedOrder = orderRepository.save(order);
-        Map<Long, Integer> productMap = convertOrderItemsToMap(order.getOrderItems());
-        OrderPlacedEvent event = new OrderPlacedEvent(savedOrder.getId().toString(), productMap);
 
-        // Send event
-        kafkaProducerService.sendOrderPlacedEvent(event);
-        return savedOrder;
-    }
 }
 
 

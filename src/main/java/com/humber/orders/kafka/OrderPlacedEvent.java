@@ -23,14 +23,15 @@ public class OrderPlacedEvent {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
+    public void setProducts(Map<Long, Integer> products) {
+        this.products = products;
+    }
 
     public Map<Long, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Long, Integer> products) {
-        this.products = products;
-    }
+
 
     @Override
     public String toString() {
