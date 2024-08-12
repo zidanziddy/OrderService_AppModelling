@@ -19,14 +19,8 @@ public class OrderItem {
 	public Long getId() {
 		return id;
 	}
-	public Long getProductId() {
-		return productId;
-	}
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
-	public int getQuantity() {
-		return quantity;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -37,9 +31,20 @@ public class OrderItem {
 	public Order getOrder() {
 		return order;
 	}
-	public void setOrder(Order order) {
-		this.order = order;
+
+	public Long getProductId() {
+		return productId;
 	}
+	
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+
 
 
     

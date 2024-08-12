@@ -4,11 +4,13 @@ package com.humber.orders.kafka;
 import java.util.Map;
 
 public class OrderPlacedEvent {
+    public OrderPlacedEvent() {}
+    private Map<Long, Integer> products;
     private String orderId;
-    private Map<Long, Integer> products; 
+
 
     // Constructors
-    public OrderPlacedEvent() {}
+
 
     public OrderPlacedEvent(String orderId, Map<Long, Integer> products) {
         this.orderId = orderId;
@@ -16,20 +18,20 @@ public class OrderPlacedEvent {
     }
 
     // Getters and Setters
+
+    public void setProducts(Map<Long, Integer> products) {
+        this.products = products;
+    }
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    public Map<Long, Integer> getProducts() {
+        return products;
+    }
     public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-    public void setProducts(Map<Long, Integer> products) {
-        this.products = products;
-    }
-
-    public Map<Long, Integer> getProducts() {
-        return products;
-    }
 
 
 
